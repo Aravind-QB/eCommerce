@@ -37,7 +37,7 @@ export class UsersService {
     try {
       let user = new User();
       user = Object.assign(user, _user);
-      user.password = await bcrypt.hash(_user.password, 10);
+      // user.password = await bcrypt.hash(_user.password, 10);
       const newUser = this.usersRepository.save(user).then().catch();
       return newUser;
     } catch (error) {
