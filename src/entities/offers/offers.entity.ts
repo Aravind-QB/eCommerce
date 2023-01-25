@@ -4,6 +4,7 @@ import {
   PrimaryGeneratedColumn,
   Generated,
   ManyToOne,
+  JoinColumn,
 } from 'typeorm';
 import { Product } from '../products/products.entity';
 
@@ -31,5 +32,6 @@ export class Offer {
   @ManyToOne(() => Product, (product) => product.id, {
     nullable: false,
   })
-  product: Product;
+  @JoinColumn()
+  product: Product[];
 }

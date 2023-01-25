@@ -7,10 +7,21 @@ import { Repository } from 'typeorm';
 export class OffersService {
   constructor(
     @InjectRepository(Offer)
-    private usersRepository: Repository<Offer>,
+    private offerRepository: Repository<Offer>,
   ) {}
+
+  createOffer(offer: Offer): Promise<Offer> {
+    try {
+      console.log(offer);
+      const newoffer = this.offerRepository.save(offer);
+      return newoffer;
+    } catch (error) {
+      return error;
+    }
+  }
+
   findAll(): Promise<Offer[]> {
-    return this.usersRepository.find({
+    return this.offerRepository.find({
       select: {
         id: true,
         title: true,
