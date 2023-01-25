@@ -8,6 +8,7 @@ import {
   Res,
   UseGuards,
 } from '@nestjs/common';
+import { CreateUserDto } from 'src/models/create-user.dto';
 import { User } from '../../entities/users/users.entity';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 import { UsersService } from './users.service';
@@ -17,12 +18,11 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
-  async createUser(@Res() response, @Body() user: User) {
+  async createUser(@Res() response, @Body() user: CreateUserDto) {
     const newUser = await this.usersService.createUser(user);
     if (!!newUser) {
       return response.status(HttpStatus.CREATED).json({
         success: 'User created successfully',
-        newUser,
       });
     } else {
       return response.status(HttpStatus.BAD_REQUEST).json({

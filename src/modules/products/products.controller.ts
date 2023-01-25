@@ -46,13 +46,15 @@ export class ProductsController {
     const product = await this.productsService.findOne(id);
     if (!!product) {
       return response.status(HttpStatus.OK).json({
-        productname: product.name,
-        description: product.description,
-        inventory: product.inventory,
-        price: product.price,
-        rating: product.rating,
-        thumbnail: product.thumbnail,
-        unit: product.unit,
+        product,
+        // productname: product.name,
+        // description: product.description,
+        // inventory: product.inventory,
+        // price: product.price,
+        // rating: product.rating,
+        // thumbnail: product.thumbnail,
+        // unit: product.unit,
+        // images: product.productImages,
       });
     } else {
       return response.status(HttpStatus.NOT_FOUND).json({});

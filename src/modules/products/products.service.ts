@@ -33,10 +33,27 @@ export class ProductsService {
     });
   }
 
-  findOne(id: string): Promise<Product> {
-    return this.productsRepository.findOneBy({
-      id,
-      isActive: true,
+  findOne(id: string): Promise<Product[]> {
+    return this.productsRepository.find({
+      select: {
+        name: true,
+        description: true,
+        inventory: true,
+        price: true,
+        rating: true,
+        thumbnail: true,
+        unit: true,
+        brand: true,
+        discountPercentage: true,
+      },
+      relations: {
+        category: true,
+        productImages: true,
+      },
+      where: {
+        id,
+        isActive: true,
+      },
     });
   }
 

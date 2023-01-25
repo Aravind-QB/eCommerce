@@ -23,8 +23,8 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
   imports: [
     ConfigModule.forRoot(),
     ThrottlerModule.forRoot({
-      ttl: 120,
-      limit: 2,
+      ttl: 60,
+      limit: 10,
     }),
     TypeOrmModule.forRoot({
       type: 'mysql',

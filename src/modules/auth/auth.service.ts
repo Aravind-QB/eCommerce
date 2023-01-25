@@ -3,8 +3,8 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { OrderService } from '../order/order.service';
-// import { createCipheriv, createDecipheriv, randomBytes, scrypt } from 'crypto';
-// import { promisify } from 'util';
+// crypto module
+// import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -15,26 +15,43 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    // const iv = randomBytes(16);
-    // const password = 'anything';
+    //     const algorithm = 'aes-256-cbc';
 
-    // // The key length is dependent on the algorithm.
-    // // In this case for aes256, it is 32 bytes.
-    // const key = (await promisify(scrypt)(password, 'salt', 32)) as Buffer;
-    // const cipher = createCipheriv('aes-256-ctr', key, iv);
+    //     // generate 16 bytes of random data
+    //     const initVector = crypto.randomBytes(16);
+    // console.log(initVector);
 
-    // const textToEncrypt = 'Nest';
-    // const encryptedText = Buffer.concat([
-    //   cipher.update(textToEncrypt),
-    //   cipher.final(),
-    // ]);
-    // console.log(encryptedText);
-    // const decipher = createDecipheriv('aes-256-ctr', key, iv);
-    // const decryptedText = Buffer.concat([
-    //   decipher.update(encryptedText),
-    //   decipher.final(),
-    // ]);
-    // console.log(decryptedText.toString());
+    //     // protected data
+    //     const message = 'This is a secret message';
+
+    //     // secret key generate 32 bytes of random data
+    //     const Securitykey = crypto.randomBytes(32);
+    //     console.log(Securitykey);
+
+    //     // the cipher function
+    //     const cipher = crypto.createCipheriv(algorithm, algorithm, algorithm);
+
+    //     // encrypt the message
+    //     // input encoding
+    //     // output encoding
+    //     let encryptedData = cipher.update(message, 'utf-8', 'hex');
+
+    //     encryptedData += cipher.final('hex');
+
+    //     console.log('Encrypted message: ' + encryptedData);
+
+    //     // the decipher function
+    //     const decipher = crypto.createDecipheriv(
+    //       algorithm,
+    //       Securitykey,
+    //       initVector,
+    //     );
+
+    //     let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
+
+    //     decryptedData += decipher.final('utf8');
+
+    //     console.log('Decrypted message: ' + decryptedData);
 
     const user = await this.usersService.findOneAuth({
       username: username,
