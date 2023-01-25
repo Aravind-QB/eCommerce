@@ -47,14 +47,6 @@ export class ProductsController {
     if (!!product) {
       return response.status(HttpStatus.OK).json({
         product,
-        // productname: product.name,
-        // description: product.description,
-        // inventory: product.inventory,
-        // price: product.price,
-        // rating: product.rating,
-        // thumbnail: product.thumbnail,
-        // unit: product.unit,
-        // images: product.productImages,
       });
     } else {
       return response.status(HttpStatus.NOT_FOUND).json({});

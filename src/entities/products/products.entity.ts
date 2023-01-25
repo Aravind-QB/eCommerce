@@ -53,7 +53,9 @@ export class Product {
   })
   category: Categories;
 
-  @OneToMany(() => ProductImages, (productImages) => productImages.product)
+  @OneToMany(() => ProductImages, (productImages) => productImages.product, {
+    cascade: true,
+  })
   @JoinColumn({ name: 'productimages_id' })
   productImages: ProductImages[];
 

@@ -59,6 +59,7 @@ export class ProductsService {
 
   createProduct(product: Product): Promise<Product> {
     try {
+      console.log(product);
       const newProduct = this.productsRepository.save(product);
       return newProduct;
     } catch (error) {

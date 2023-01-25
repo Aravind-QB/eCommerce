@@ -12,14 +12,14 @@ export class Categories {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   name: string;
 
   @Column()
   description: string;
 
-  @Column()
-  isActive: string;
+  @Column({ default: true })
+  isActive: boolean;
 
   @OneToMany(() => Product, (product) => product.id)
   @JoinColumn({ name: 'product_id' })
