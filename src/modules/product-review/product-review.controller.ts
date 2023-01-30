@@ -32,7 +32,7 @@ export class ProductReviewController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Request() req, @Res() response) {
     const reviews = await this.reviewService.findAll(req.user.user);
