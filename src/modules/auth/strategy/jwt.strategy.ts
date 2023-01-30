@@ -1,5 +1,3 @@
-`$ npm install --save @nestjs/jwt passport-jwt
-$ npm install --save-dev @types/passport-jwt`;
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
@@ -10,7 +8,11 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
     // console.log(process.env.JWT_SECRET);
     super({
-      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => {
+          return req.cookies['jwt'];
+        },
+      ]),
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET,
     });

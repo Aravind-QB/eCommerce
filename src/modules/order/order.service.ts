@@ -71,6 +71,36 @@ export class OrderService {
     });
   }
 
+  findByUser(user: any): Promise<Order[]> {
+    return this.ordersRepository.find({
+      select: {
+        id: true,
+        grandTotal: true,
+        status: true,
+        orderItems: {
+          id: true,
+          quantity: true,
+          total: true,
+        },
+        user: {
+          id: true,
+          firstName: true,
+          lastName: true,
+          phoneNumber: true,
+        },
+      },
+      relations: {
+        orderItems: {
+          product: true,
+        },
+        user: true,
+      },
+      where: {
+        user: user,
+      },
+    });
+  }
+
   createOrder(order: Order): Promise<Order> {
     try {
       // console.log(order);

@@ -8,6 +8,7 @@ import {
   Res,
   UseGuards,
   Request,
+  Req,
 } from '@nestjs/common';
 import { Order } from '../../entities/order/order.entity';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
@@ -39,10 +40,20 @@ export class OrderController {
     if (!!order) {
       return response.status(HttpStatus.OK).json({
         order,
-        // firstname: order.firstName,
-        // lastname: order.lastName,
-        // email: order.email,
-        // phonenumber: order.phoneNumber,
+      });
+    } else {
+      return response.status(HttpStatus.NOT_FOUND).json({});
+    }
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('getby/user')
+  async findByUser(@Req() req, @Res() response) {
+    const user = req?.user?.payload?.user;
+    const order = await this.orderService.findByUser(user);
+    if (!!order) {
+      return response.status(HttpStatus.OK).json({
+        order,
       });
     } else {
       return response.status(HttpStatus.NOT_FOUND).json({});
