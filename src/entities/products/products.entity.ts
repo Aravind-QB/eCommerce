@@ -9,6 +9,7 @@ import {
 } from 'typeorm';
 import { Offer } from '../offers/offers.entity';
 import { OrderItems } from '../order/order-items.entity';
+import { ProductReviews } from '../product-review/product-review.entity';
 import { Categories } from './categories.entity';
 import { ProductImages } from './productImages.entity';
 
@@ -66,4 +67,8 @@ export class Product {
   @OneToMany(() => Offer, (offer) => offer.product)
   @JoinColumn({ name: 'offer_id' })
   offer: Offer;
+
+  @OneToMany(() => ProductReviews, (review) => review.product)
+  @JoinColumn({ name: 'review_id' })
+  review: ProductReviews;
 }

@@ -15,48 +15,40 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    //     const algorithm = 'aes-256-cbc';
+    // const algorithm = 'aes-256-cbc';
+    // const initVector = process.env.INIT_VECTOR;
+    // const Securitykey = process.env.SECRET_KEY;
 
-    //     // generate 16 bytes of random data
-    //     const initVector = crypto.randomBytes(16);
-    // console.log(initVector);
+    // // the cipher function
+    // const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
 
-    //     // protected data
-    //     const message = 'This is a secret message';
+    // // encrypt the message
+    // // input encoding
+    // // output encoding
+    // let encryptedData = cipher.update(pass, 'utf-8', 'hex');
 
-    //     // secret key generate 32 bytes of random data
-    //     const Securitykey = crypto.randomBytes(32);
-    //     console.log(Securitykey);
+    // encryptedData += cipher.final('hex');
 
-    //     // the cipher function
-    //     const cipher = crypto.createCipheriv(algorithm, algorithm, algorithm);
+    // console.log('Encrypted message: ' + encryptedData);
 
-    //     // encrypt the message
-    //     // input encoding
-    //     // output encoding
-    //     let encryptedData = cipher.update(message, 'utf-8', 'hex');
+    // // the decipher function
+    // const decipher = crypto.createDecipheriv(
+    //   algorithm,
+    //   Securitykey,
+    //   initVector,
+    // );
 
-    //     encryptedData += cipher.final('hex');
+    // let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
 
-    //     console.log('Encrypted message: ' + encryptedData);
+    // decryptedData += decipher.final('utf8');
 
-    //     // the decipher function
-    //     const decipher = crypto.createDecipheriv(
-    //       algorithm,
-    //       Securitykey,
-    //       initVector,
-    //     );
-
-    //     let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
-
-    //     decryptedData += decipher.final('utf8');
-
-    //     console.log('Decrypted message: ' + decryptedData);
+    // console.log('Decrypted message: ' + decryptedData);
 
     const user = await this.usersService.findOneAuth({
       username: username,
       password: pass,
     });
+
     if (user && bcrypt.compare(user.password, await bcrypt.hash(pass, 10))) {
       const { password, ...result } = user;
       return result;

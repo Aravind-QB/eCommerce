@@ -12,6 +12,8 @@ async function bootstrap() {
   );
   app.use(helmet());
   app.enableCors();
-  await app.listen(process.env.PORT);
+  await app.listen(process.env.PORT || 3000, function () {
+    console.log('listening to port', process.env.PORT || 3000);
+  });
 }
 bootstrap();

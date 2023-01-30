@@ -19,7 +19,7 @@ export class AuthController {
   //   return this.authService.register(req);
   // }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('profile')
   getProfile(@Request() req) {
     return req.user;

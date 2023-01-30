@@ -17,7 +17,7 @@ import { OrderService } from './order.service';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   async createOrder(@Request() req, @Res() response, @Body() order: Order) {
     const newOrder = await this.orderService.createOrder(order);
@@ -32,7 +32,7 @@ export class OrderController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async findById(@Res() response, @Param('id') id) {
     const order = await this.orderService.findOne(id);

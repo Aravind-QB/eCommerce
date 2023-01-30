@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "67009c82-3d5c-40d2-bb2f-d622284db202",
+		"name": "eCommerce demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://52.45.227.192/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Aju\",\n    \"lastName\": \"QB\",\n    \"username\": \"aju4@mail.com\",\n    \"password\": \"aju12345\",\n    \"phoneNumber\": \"+918848746166\",\n    \"email\": \"aju4@mail.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/users",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "To create a new user. We need to embed crypto encryption as well. wwill update that soon"
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/users",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGY1NzE4MjEtYTIwYy00YTk1LWFhNzAtZmE3NmYyNzAyYWU0IiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTY1In0sImlhdCI6MTY3NDU3MDE5OSwiZXhwIjoxNjc0NjU2NTk5fQ.cr51h3SMmYll3Liqc871oGQF_85MnkJXaG6HAFPPm08",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/users",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"aju4@mail.com\",\n    \"password\": \"aju12345\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/auth/login",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "Same as the user creation, we need to add crypto encryption.\n\nThis api is used for user login. access token as well as the unfinished cart details will be returned, of which the token needs to be sent as bearer token for the subsequent requests."
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/auth/profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDY0MjAwOSwiZXhwIjoxNjc0NzI4NDA5fQ.x_ZwLBT-Dv6t1QfuV1_fD8vH5jqcBC4OxZEKG-544Yk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/auth/profile",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"auth",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NDM3MzAsImV4cCI6MTY3NDczMDEzMH0.rjB_DaOZFIEGbErE8mJvo_aap_xLcjQ2QcAi7Z7XIoc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"All1\",\n    \"description\": \"All\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/category",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NDM3MzAsImV4cCI6MTY3NDczMDEzMH0.rjB_DaOZFIEGbErE8mJvo_aap_xLcjQ2QcAi7Z7XIoc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/category",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/users/db7498bf-3aec-49c0-9f7b-4729a48aaca0",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NDM3MzAsImV4cCI6MTY3NDczMDEzMH0.rjB_DaOZFIEGbErE8mJvo_aap_xLcjQ2QcAi7Z7XIoc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/users/db7498bf-3aec-49c0-9f7b-4729a48aaca0",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"users",
+						"db7498bf-3aec-49c0-9f7b-4729a48aaca0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NDM3MzAsImV4cCI6MTY3NDczMDEzMH0.rjB_DaOZFIEGbErE8mJvo_aap_xLcjQ2QcAi7Z7XIoc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Wings of fire\",\n    \"description\": \"description\",\n    \"unit\": \"1\",\n    \"inventory\": \"1000\",\n    \"price\": \"120\",\n    \"rating\": \"4.5\",\n    \"thumbnail\": \"https://i.dummyjson.com/data/products/33/thumbnail.jpg\",\n    \"brand\": \"Nokia\",\n    \"discountPercentage\": \"2\",\n    \"category\": {\n        \"id\": 1\n    },\n    \"productImages\": [\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/1.jpg\",\n            \"isActive\": \"1\"\n        },\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/2.jpg\",\n            \"isActive\": \"1\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/products",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/products",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDYzODg3MywiZXhwIjoxNjc0NzI1MjczfQ.HPTtV3CE72axOg2HHKdxYnXtR5OAMBd-sd0K7sim7fo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/products",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/products/e76fca1a-88d7-4b1b-956c-5d6cb9c7addf",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDYzODg3MywiZXhwIjoxNjc0NzI1MjczfQ.HPTtV3CE72axOg2HHKdxYnXtR5OAMBd-sd0K7sim7fo",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/products/e76fca1a-88d7-4b1b-956c-5d6cb9c7addf",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"products",
+						"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/offers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NDM3MzAsImV4cCI6MTY3NDczMDEzMH0.rjB_DaOZFIEGbErE8mJvo_aap_xLcjQ2QcAi7Z7XIoc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/offers",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/offers",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDY0MjAwOSwiZXhwIjoxNjc0NzI4NDA5fQ.x_ZwLBT-Dv6t1QfuV1_fD8vH5jqcBC4OxZEKG-544Yk",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"3 Tier Corner Shelves\",\n    \"description\": \"3 Tier Corner Shelves | 3 PCs Wall Mount Kitchen Shelf | Floating Bedroom Shelf\",\n    \"discountPercentage\": \"10\",\n    \"thumbnail\": \"https://i.dummyjson.com/data/products/33/thumbnail.jpg\",\n    \"product\": {\n        \"id\": \"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/offers",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"offers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NjI3MzEsImV4cCI6MTY3NDc0OTEzMX0.ipz-Jk121DyyTPB7XXt2hCprXcriQJ3aaIa3tYSOKrc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"grandTotal\": \"1233\",\n    \"status\": \"Pending\",\n    \"orderItems\": [\n        {\n            \"product\": {\n                \"id\": \"81b7cb36-c377-4344-9c87-00a2ff3c1363\"\n            },\n                \"total\": \"120\",\n                \"quantity\": \"12\"\n        },\n        {\n            \"product\": {\n                \"id\": \"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf\"\n            },\n                \"total\": \"150\",\n                \"quantity\": \"1\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/order",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/order/5a96aefa-4bc8-4a1e-84a3-b2c079d1d860",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NjI3MzEsImV4cCI6MTY3NDc0OTEzMX0.ipz-Jk121DyyTPB7XXt2hCprXcriQJ3aaIa3tYSOKrc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/order/2824e09c-c460-4fae-8aaf-e8822a261a55",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"order",
+						"2824e09c-c460-4fae-8aaf-e8822a261a55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update order",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzQ2NjI3MzEsImV4cCI6MTY3NDc0OTEzMX0.ipz-Jk121DyyTPB7XXt2hCprXcriQJ3aaIa3tYSOKrc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"id\": \"2824e09c-c460-4fae-8aaf-e8822a261a55\",\n            \"grandTotal\": \"2700\",\n            \"status\": \"Completed\",\n            \"orderItems\": [\n                {\n                    \"id\": \"7fc9aa26-b42b-48bc-b775-a34d8d87e977\",\n                    \"total\": \"1200\",\n                    \"quantity\": \"5\",\n                    \"product\": {\n                        \"id\": \"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf\"\n                    }\n                },\n                {\n                    \"id\": \"cdc208a1-5096-418a-afb2-e4c317eda66a\",\n                    \"total\": \"1500\",\n                    \"quantity\": \"10\",\n                    \"product\": {\n                        \"id\": \"81b7cb36-c377-4344-9c87-00a2ff3c1363\"\n                    }\n                }\n            ]\n        }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/order",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"order"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

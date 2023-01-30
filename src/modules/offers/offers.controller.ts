@@ -15,7 +15,7 @@ import { OffersService } from './offers.service';
 export class OffersController {
   constructor(private readonly offerService: OffersService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() offer: Offer) {
     const newCategory = await this.offerService.createOffer(offer);
@@ -30,7 +30,7 @@ export class OffersController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const offers = await this.offerService.findAll();

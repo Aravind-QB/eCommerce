@@ -19,6 +19,8 @@ import { ConfigModule } from '@nestjs/config';
 import { Offer } from './entities/offers/offers.entity';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { CategoryModule } from './modules/category/category.module';
+import { ProductReviewModule } from './modules/product-review/product-review.module';
+import { ProductReviews } from './entities/product-review/product-review.entity';
 
 @Module({
   imports: [
@@ -42,6 +44,7 @@ import { CategoryModule } from './modules/category/category.module';
         Order,
         OrderItems,
         Offer,
+        ProductReviews,
       ],
       synchronize: true,
       autoLoadEntities: true,
@@ -53,6 +56,7 @@ import { CategoryModule } from './modules/category/category.module';
     OrderModule,
     AuthModule,
     CategoryModule,
+    ProductReviewModule,
   ],
   controllers: [AppController],
   providers: [

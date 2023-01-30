@@ -7,6 +7,7 @@ import {
   JoinColumn,
 } from 'typeorm';
 import { Order } from '../order/order.entity';
+import { ProductReviews } from '../product-review/product-review.entity';
 
 @Entity()
 export class User {
@@ -38,4 +39,8 @@ export class User {
   @OneToMany(() => Order, (order) => order.id)
   @JoinColumn({ name: 'order_id' })
   order: Order;
+
+  @OneToMany(() => ProductReviews, (review) => review.user)
+  @JoinColumn({ name: 'review_id' })
+  review: ProductReviews;
 }

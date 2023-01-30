@@ -26,6 +26,7 @@ export class ProductsService {
       relations: {
         category: true,
         productImages: true,
+        review: true,
       },
       where: {
         isActive: true,
@@ -45,10 +46,25 @@ export class ProductsService {
         unit: true,
         brand: true,
         discountPercentage: true,
+        review: {
+          id: true,
+          title: true,
+          description: true,
+          rating: true,
+          user: {
+            firstName: true,
+            lastName: true,
+            email: true,
+            phoneNumber: true,
+          },
+        },
       },
       relations: {
         category: true,
         productImages: true,
+        review: {
+          user: true,
+        },
       },
       where: {
         id,

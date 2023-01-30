@@ -71,3 +71,51 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Crypto encryption and decryption
+
+    import * as crypto from 'crypto';
+
+    const algorithm = 'aes-256-cbc'; // Select which algorithm we want to use to do crypto
+
+    // generate 16 bytes of random data
+    const initVector = crypto.randomBytes(16); // or a 16 digit string
+    
+    // const base = Buffer.from(initVector, 'binary').toString('base64'); // convert the random bytes to string, which can be used to store in DB
+    // const orginalVector = Buffer.from(base, 'base64'); // DB stored string can be converted back to buffer, so that it can be used for encryption and decryption
+
+    // protected data
+    const message = 'This is a secret message';
+
+    // secret key generate 32 bytes of random data
+    const Securitykey = crypto.randomBytes(32); //or a 32 digit string. Random will be more secure
+
+    // const baseS = Buffer.from(Securitykey, 'binary').toString('base64');// convert the random bytes to string, which can be used to store in DB
+    // const orginalKey = Buffer.from(baseS, 'base64'); // DB stored string can be converted back to buffer, so that it can be used for encryption and decryption
+
+    // the cipher function
+    const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
+
+    // encrypt the message
+    // input encoding
+    // output encoding
+    let encryptedData = cipher.update(message, 'utf-8', 'hex');
+
+    encryptedData += cipher.final('hex');
+
+    console.log('Encrypted message: ' + encryptedData);
+
+    // the decipher function
+    const decipher = crypto.createDecipheriv(
+      algorithm,
+      Securitykey,
+      initVector,
+    );
+
+    let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
+
+    decryptedData += decipher.final('utf8');
+
+    console.log('Decrypted message: ' + decryptedData);
+
+## Crypto ends....!

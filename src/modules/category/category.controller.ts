@@ -15,7 +15,7 @@ import { CategoryService } from './category.service';
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() category: Categories) {
     const newCategory = await this.categoryService.createCategory(category);
@@ -30,7 +30,7 @@ export class CategoryController {
     }
   }
 
-  @UseGuards(JwtAuthGuard)
+  // @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const categories = await this.categoryService.findAll();
