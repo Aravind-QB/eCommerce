@@ -17,7 +17,7 @@ import { ProductReviewService } from './product-review.service';
 export class ProductReviewController {
   constructor(private readonly reviewService: ProductReviewService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() review: ProductReviews) {
     const newreview = await this.reviewService.createOffer(review);
