@@ -13,6 +13,7 @@ export class ProductsService {
   findAll(): Promise<Product[]> {
     return this.productsRepository.find({
       select: {
+        id: true,
         name: true,
         description: true,
         inventory: true,
@@ -68,6 +69,47 @@ export class ProductsService {
       },
       where: {
         id,
+        isActive: true,
+      },
+    });
+  }
+
+  findByCategory(id: number): Promise<Product[]> {
+    return this.productsRepository.find({
+      select: {
+        name: true,
+        description: true,
+        inventory: true,
+        price: true,
+        rating: true,
+        thumbnail: true,
+        unit: true,
+        brand: true,
+        discountPercentage: true,
+        review: {
+          id: true,
+          title: true,
+          description: true,
+          rating: true,
+          user: {
+            firstName: true,
+            lastName: true,
+            email: true,
+            phoneNumber: true,
+          },
+        },
+      },
+      relations: {
+        category: true,
+        productImages: true,
+        review: {
+          user: true,
+        },
+      },
+      where: {
+        category: {
+          id,
+        },
         isActive: true,
       },
     });

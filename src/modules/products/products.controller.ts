@@ -52,4 +52,17 @@ export class ProductsController {
       return response.status(HttpStatus.NOT_FOUND).json({});
     }
   }
+
+  // @UseGuards(JwtAuthGuard)
+  @Get('byCategory/:id')
+  async findByCategory(@Res() response, @Param('id') id) {
+    const product = await this.productsService.findByCategory(id);
+    if (!!product) {
+      return response.status(HttpStatus.OK).json({
+        product,
+      });
+    } else {
+      return response.status(HttpStatus.NOT_FOUND).json({});
+    }
+  }
 }
