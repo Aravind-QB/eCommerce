@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Post,
   Res,
@@ -18,7 +19,12 @@ export class OffersController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() offer: Offer) {
-    const newCategory = await this.offerService.createOffer(offer);
+    const newCategory = await this.offerService.createOffer(offer).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });
     if (!!newCategory) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Offer created successfully',

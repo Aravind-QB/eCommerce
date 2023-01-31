@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Post,
   Res,
@@ -18,7 +19,12 @@ export class CategoryController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() category: Categories) {
-    const newCategory = await this.categoryService.createCategory(category);
+    const newCategory = await this.categoryService.createCategory(category).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });
     if (!!newCategory) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Product Category created successfully',

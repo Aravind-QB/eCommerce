@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Param,
   Post,
@@ -19,7 +20,12 @@ export class ProductsController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createProduct(@Res() response, @Body() product: Product) {
-    const newProduct = await this.productsService.createProduct(product);
+    const newProduct = await this.productsService.createProduct(product).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });;
     if (!!newProduct) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Product created successfully',
