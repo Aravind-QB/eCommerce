@@ -57,11 +57,11 @@ export class AuthService {
   }
 
   async login(user: any) {
-    // console.log(user.user);
-    // const unfinishedOrder = await this.orderService.findOneByStatus(
-    //   'Pending',
-    //   user.user,
-    // );
+    console.log(user.user);
+    const unfinishedOrder = await this.orderService.findOneByStatus(
+      'Pending',
+      user.user,
+    );
     const payload = {
       user: {
         id: user.user.id,
@@ -76,6 +76,7 @@ export class AuthService {
       access_token: this.jwtService.sign(payload),
       firstName: user.user.firstName,
       lastName: user.user.lastName,
+      unfinishedOrder: unfinishedOrder,
     };
   }
 
