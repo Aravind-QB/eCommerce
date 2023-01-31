@@ -9,6 +9,7 @@ import {
   UseGuards,
   Request,
   Req,
+  HttpException,
 } from '@nestjs/common';
 import { Order } from '../../entities/order/order.entity';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
@@ -21,7 +22,12 @@ export class OrderController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createOrder(@Request() req, @Res() response, @Body() order: Order) {
-    const newOrder = await this.orderService.createOrder(order);
+    const newOrder = await this.orderService.createOrder(order).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });
     if (!!newOrder) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Order created successfully',

@@ -8,6 +8,7 @@ import {
   Request,
   UseGuards,
   Param,
+  HttpException,
 } from '@nestjs/common';
 import { ProductReviews } from 'src/entities/product-review/product-review.entity';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
@@ -20,7 +21,12 @@ export class ProductReviewController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createCategory(@Res() response, @Body() review: ProductReviews) {
-    const newreview = await this.reviewService.createOffer(review);
+    const newreview = await this.reviewService.createOffer(review).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });
     if (!!newreview) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Review created successfully',

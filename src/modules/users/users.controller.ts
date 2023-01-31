@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Get,
+  HttpException,
   HttpStatus,
   Param,
   Post,
@@ -19,7 +20,12 @@ export class UsersController {
 
   @Post()
   async createUser(@Res() response, @Body() user: CreateUserDto) {
-    const newUser = await this.usersService.createUser(user);
+    const newUser = await this.usersService.createUser(user).catch(err => {
+      throw new HttpException({
+        message: 'Something went wrong!',
+        error: err.message,
+      }, HttpStatus.BAD_REQUEST);
+    });
     if (!!newUser) {
       return response.status(HttpStatus.CREATED).json({
         success: 'User created successfully',
