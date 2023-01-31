@@ -24,7 +24,8 @@ export class AuthController {
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
-        ...x,
+        firstName: x['firstName'],
+        lastName: x['lastName'],
         unfinishedOrder: x['unfinishedOrder'],
         expire: new Date().setDate(new Date().getDate() + 1),
       },
