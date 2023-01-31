@@ -2,11 +2,13 @@ import { Controller, Post, UseGuards, Get, Res, Req } from '@nestjs/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
+import { OrderService } from '../order/order.service';
 // import { dbConstants, jwtConstants } from 'src/constants/constants';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private orderService: OrderService,) {}
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
@@ -19,7 +21,7 @@ export class AuthController {
       path: '/',
       maxAge: 60 * 60 * 24 * 3,
     };
-    res.cookie('jwt', x['access_token'], cookiesOpts);
+    res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
         ...x,
@@ -36,8 +38,12 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @Get('profile')
-  getProfile(@Req() request) {
-    // console.log(request.cookies['jwt']);
-    return request.user;
+  async getProfile(@Req() request) {
+    const unfinishedOrder = await this.orderService.findOneByStatus(
+      'Pending',
+      request.user.user,
+    );
+    return {...request.user,
+      unfinishedOrder: unfinishedOrder,};
   }
 }
