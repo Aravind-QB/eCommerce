@@ -25,7 +25,7 @@ export class ProductsService {
         discountPercentage: true,
       },
       relations: {
-        category: true,
+        categories: true,
         productImages: true,
         review: true,
       },
@@ -61,7 +61,7 @@ export class ProductsService {
         },
       },
       relations: {
-        category: true,
+        categories: true,
         productImages: true,
         review: {
           user: true,
@@ -101,15 +101,17 @@ export class ProductsService {
         },
       },
       relations: {
-        category: true,
+        categories: true,
         productImages: true,
         review: {
           user: true,
         },
       },
       where: {
-        category: {
-          id,
+        categories: {
+          category: {
+            id
+          },
         },
         isActive: true,
       },
@@ -118,7 +120,7 @@ export class ProductsService {
 
   createProduct(product: Product): Promise<Product> {
     try {
-      console.log(product);
+      // console.log(product);
       const newProduct = this.productsRepository.save(product);
       return newProduct;
     } catch (error) {

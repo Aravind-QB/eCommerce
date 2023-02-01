@@ -5,6 +5,7 @@ import {
   OneToMany,
   JoinColumn,
 } from 'typeorm';
+import { ProductCategoriesMapper } from './productCategoryMapper.entity';
 import { Product } from './products.entity';
 
 @Entity()
@@ -21,7 +22,7 @@ export class Categories {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany(() => Product, (product) => product.id)
-  @JoinColumn({ name: 'product_id' })
-  product: Product;
+  @OneToMany(() => ProductCategoriesMapper, (category) => category.category)
+  @JoinColumn({ name: 'categorymapper_id' })
+  category: ProductCategoriesMapper;
 }
