@@ -14,6 +14,7 @@ import {
 import { Order } from '../../entities/order/order.entity';
 import { JwtAuthGuard } from '../auth/guard/jwt-auth.guard';
 import { OrderService } from './order.service';
+import { OrderDTO } from '../../models/order.dto';
 
 @Controller('order')
 export class OrderController {
@@ -21,8 +22,25 @@ export class OrderController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async createOrder(@Request() req, @Res() response, @Body() order: Order) {
-    const newOrder = await this.orderService.createOrder(order).catch(err => {
+  async createOrder(@Request() req, @Res() response, @Body() order: OrderDTO) {
+
+    let _order = new Order();
+    _order = Object.assign(_order, order);
+    console.log(order);
+    console.log('########################');
+    console.log(_order);
+    _order.orderItems.forEach(element => {
+      element = {product: {
+        id: element.id
+      },
+      id: '',
+      total: element.total,
+      quantity: element.quantity,
+    }
+    });
+    console.log(_order);
+    
+    const newOrder = await this.orderService.createOrder(_order).catch(err => {
       throw new HttpException({
         message: 'Something went wrong!',
         error: err.message,
