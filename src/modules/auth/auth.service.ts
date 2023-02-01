@@ -29,19 +29,6 @@ export class AuthService {
     console.log('Encrypted message: ' + encryptedData);
     console.log('Encrypted pass: ' + pass);
 
-    // // the decipher function
-    // const decipher = crypto.createDecipheriv(
-    //   algorithm,
-    //   Securitykey,
-    //   initVector,
-    // );
-
-    // let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
-
-    // decryptedData += decipher.final('utf8');
-
-    // console.log('Decrypted message: ' + decryptedData);
-
     const user = await this.usersService.findOneAuth({
       username: username,
       password: encryptedData,
