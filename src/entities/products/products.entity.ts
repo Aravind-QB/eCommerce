@@ -73,7 +73,7 @@ export class Product {
   @JoinColumn({ name: 'review_id' })
   review: ProductReviews;
 
-  @OneToMany(() => ProductCategoriesMapper, (category) => category.product, {nullable: false})
+  @OneToMany(() => ProductCategoriesMapper, (category) => category.product)
   @JoinColumn({ name: 'categorymapper_id' })
-  categories: ProductCategoriesMapper;
+  categories: ProductCategoriesMapper[];
 }

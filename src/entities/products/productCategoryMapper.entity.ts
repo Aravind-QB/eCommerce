@@ -21,11 +21,13 @@ export class ProductCategoriesMapper {
 
   @ManyToOne(() => Product, (product) => product.id, {
     nullable: false,
+    cascade: true,
   })
   product: Product;
 
   @ManyToOne(() => Categories, (category) => category.id, {
     nullable: false,
+    cascade: true,
   })
   category: Categories;
 }
