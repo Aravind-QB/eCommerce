@@ -25,7 +25,9 @@ export class ProductsService {
         discountPercentage: true,
       },
       relations: {
-        categories: true,
+        categories: {
+          category: true
+        },
         productImages: true,
         review: true,
       },
@@ -47,6 +49,14 @@ export class ProductsService {
         unit: true,
         brand: true,
         discountPercentage: true,
+        categories: {
+          isActive: true,
+          category: {
+            id: true,
+            name: true,
+            description: true
+          },
+        },
         review: {
           id: true,
           title: true,
@@ -61,7 +71,9 @@ export class ProductsService {
         },
       },
       relations: {
-        categories: true,
+        categories: {
+          category: true
+        },
         productImages: true,
         review: {
           user: true,
@@ -101,7 +113,9 @@ export class ProductsService {
         },
       },
       relations: {
-        categories: true,
+        categories: {
+          category: true,
+        },
         productImages: true,
         review: {
           user: true,

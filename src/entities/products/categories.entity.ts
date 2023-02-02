@@ -22,7 +22,9 @@ export class Categories {
   @Column({ default: true })
   isActive: boolean;
 
-  @OneToMany(() => ProductCategoriesMapper, (category) => category.category)
+  @OneToMany(() => ProductCategoriesMapper, (category) => category.category, {
+    cascade: true
+  })
   @JoinColumn({ name: 'categorymapper_id' })
   category: ProductCategoriesMapper;
 }

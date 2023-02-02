@@ -73,7 +73,9 @@ export class Product {
   @JoinColumn({ name: 'review_id' })
   review: ProductReviews;
 
-  @OneToMany(() => ProductCategoriesMapper, (category) => category.product)
+  @OneToMany(() => ProductCategoriesMapper, (category) => category.product, {
+    cascade: true
+  })
   @JoinColumn({ name: 'categorymapper_id' })
   categories: ProductCategoriesMapper[];
 }
