@@ -6,13 +6,14 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor() {
-    // console.log(process.env.JWT_SECRET);
+    // || ExtractJwt.fromExtractors([
+    //   (req) => {
+    //     return req.cookies['emart'];
+    //   },
+    // ])
+    
     super({
-      jwtFromRequest: ExtractJwt.fromExtractors([
-        (req) => {
-          return req.cookies['emart'];
-        },
-      ]),
+      jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
       secretOrKey: process.env.JWT_SECRET,
     });

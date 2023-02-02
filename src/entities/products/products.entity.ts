@@ -11,6 +11,7 @@ import { Offer } from '../offers/offers.entity';
 import { OrderItems } from '../order/order-items.entity';
 import { ProductReviews } from '../product-review/product-review.entity';
 import { Categories } from './categories.entity';
+import { ProductCategoriesMapper } from './productCategoryMapper.entity';
 import { ProductImages } from './productImages.entity';
 
 @Entity()
@@ -49,10 +50,10 @@ export class Product {
   @Column({ default: true })
   isActive: boolean;
 
-  @ManyToOne(() => Categories, (category) => category.id, {
-    nullable: false,
-  })
-  category: Categories;
+  // @ManyToOne(() => Categories, (category) => category.id, {
+  //   nullable: false,
+  // })
+  // category: Categories;
 
   @OneToMany(() => ProductImages, (productImages) => productImages.product, {
     cascade: true,
@@ -71,4 +72,10 @@ export class Product {
   @OneToMany(() => ProductReviews, (review) => review.product)
   @JoinColumn({ name: 'review_id' })
   review: ProductReviews;
+
+  @OneToMany(() => ProductCategoriesMapper, (category) => category.product, {
+    cascade: true
+  })
+  @JoinColumn({ name: 'categorymapper_id' })
+  categories: ProductCategoriesMapper[];
 }

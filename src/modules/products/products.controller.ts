@@ -41,6 +41,15 @@ export class ProductsController {
   @Get()
   async fetchAll(@Res() response) {
     const products = await this.productsService.findAll();
+
+    products.forEach(prd => {
+      let categoryList = [];
+      prd.categories.forEach(cat => {
+        categoryList.push({id: cat.category.id, name: cat.category.name, description: cat.category.description});
+      });
+      prd.categories = categoryList;
+    });
+
     return response.status(HttpStatus.OK).json({
       products,
     });
@@ -50,7 +59,17 @@ export class ProductsController {
   @Get('/:id')
   async findById(@Res() response, @Param('id') id) {
     const product = await this.productsService.findOne(id);
+
     if (!!product) {
+      
+      product.forEach(prd => {
+        let categoryList = [];
+        prd.categories.forEach(cat => {
+          categoryList.push({id: cat.category.id, name: cat.category.name, description: cat.category.description});
+        });
+        prd.categories = categoryList;
+      });
+      
       return response.status(HttpStatus.OK).json({
         product,
       });
@@ -64,6 +83,15 @@ export class ProductsController {
   async findByCategory(@Res() response, @Param('id') id) {
     const product = await this.productsService.findByCategory(id);
     if (!!product) {
+
+      product.forEach(prd => {
+        let categoryList = [];
+        prd.categories.forEach(cat => {
+          categoryList.push({id: cat.category.id, name: cat.category.name, description: cat.category.description});
+        });
+        prd.categories = categoryList;
+      });
+
       return response.status(HttpStatus.OK).json({
         product,
       });
