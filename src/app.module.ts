@@ -22,6 +22,8 @@ import { CategoryModule } from './modules/category/category.module';
 import { ProductReviewModule } from './modules/product-review/product-review.module';
 import { ProductReviews } from './entities/product-review/product-review.entity';
 import { ProductCategoriesMapper } from './entities/products/productCategoryMapper.entity';
+import { ProductWishlistModule } from './product-wishlist/product-wishlist.module';
+import { ProductWishlist } from './entities/products/productWishlist.entity';
 
 @Module({
   imports: [
@@ -47,6 +49,7 @@ import { ProductCategoriesMapper } from './entities/products/productCategoryMapp
         Offer,
         ProductReviews,
         ProductCategoriesMapper,
+        ProductWishlist,
       ],
       synchronize: true,
       autoLoadEntities: true,
@@ -59,6 +62,7 @@ import { ProductCategoriesMapper } from './entities/products/productCategoryMapp
     AuthModule,
     CategoryModule,
     ProductReviewModule,
+    ProductWishlistModule,
   ],
   controllers: [AppController],
   providers: [
