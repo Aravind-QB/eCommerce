@@ -38,7 +38,7 @@ export class ProductReviewController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Request() req, @Res() response) {
     const reviews = await this.reviewService.findAll(req.user.user);
@@ -47,7 +47,7 @@ export class ProductReviewController {
     });
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('byproduct/:pid')
   async fetchAllByProduct(@Request() req, @Res() response, @Param('pid') pid) {
     const reviews = await this.reviewService.fetchAllByProduct(pid);

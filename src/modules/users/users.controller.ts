@@ -37,7 +37,7 @@ export class UsersController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const users = await this.usersService.findAll();
@@ -46,7 +46,7 @@ export class UsersController {
     });
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async findById(@Res() response, @Param('id') id) {
     const user = await this.usersService.findOne(id);

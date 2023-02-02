@@ -36,7 +36,7 @@ export class OffersController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const offers = await this.offerService.findAll();

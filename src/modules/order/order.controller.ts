@@ -39,7 +39,7 @@ export class OrderController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async findById(@Res() response, @Param('id') id) {
     const order = await this.orderService.findOne(id);

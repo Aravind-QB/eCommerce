@@ -36,7 +36,7 @@ export class CategoryController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const categories = await this.categoryService.findAll();

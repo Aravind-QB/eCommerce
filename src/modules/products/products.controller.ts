@@ -37,7 +37,7 @@ export class ProductsController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Res() response) {
     const products = await this.productsService.findAll();
@@ -55,7 +55,7 @@ export class ProductsController {
     });
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('/:id')
   async findById(@Res() response, @Param('id') id) {
     const product = await this.productsService.findOne(id);
@@ -78,7 +78,7 @@ export class ProductsController {
     }
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Get('byCategory/:id')
   async findByCategory(@Res() response, @Param('id') id) {
     const product = await this.productsService.findByCategory(id);
