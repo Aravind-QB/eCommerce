@@ -12,7 +12,7 @@ async function bootstrap() {
     }),
   );
   app.use(helmet());
-  app.enableCors();
+  app.enableCors({origin:"http://localhost:3000", credentials:true});
   app.use(cookieParser());
   await app.listen(process.env.PORT || 3000, function () {
     console.log('listening to port', process.env.PORT || 3000);
