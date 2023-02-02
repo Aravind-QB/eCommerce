@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { OrderService } from '../order/order.service';
 // crypto module
-// import * as crypto from 'crypto';
+import * as crypto from 'crypto';
 
 @Injectable()
 export class AuthService {
@@ -15,38 +15,23 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
-    // const algorithm = 'aes-256-cbc';
-    // const initVector = process.env.INIT_VECTOR;
-    // const Securitykey = process.env.SECRET_KEY;
+    const algorithm = 'aes-256-cbc';
+    const initVector = process.env.INIT_VECTOR;
+    const Securitykey = process.env.SECRET_KEY;
 
-    // // the cipher function
-    // const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
+    // the cipher function
+    const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
 
-    // // encrypt the message
-    // // input encoding
-    // // output encoding
-    // let encryptedData = cipher.update(pass, 'utf-8', 'hex');
+    let encryptedData = cipher.update(pass, 'utf-8', 'hex');
 
-    // encryptedData += cipher.final('hex');
+    encryptedData += cipher.final('hex');
 
-    // console.log('Encrypted message: ' + encryptedData);
-
-    // // the decipher function
-    // const decipher = crypto.createDecipheriv(
-    //   algorithm,
-    //   Securitykey,
-    //   initVector,
-    // );
-
-    // let decryptedData = decipher.update(encryptedData, 'hex', 'utf-8');
-
-    // decryptedData += decipher.final('utf8');
-
-    // console.log('Decrypted message: ' + decryptedData);
+    console.log('Encrypted message: ' + encryptedData);
+    console.log('Encrypted pass: ' + pass);
 
     const user = await this.usersService.findOneAuth({
       username: username,
-      password: pass,
+      password: encryptedData,
     });
 
     if (user && bcrypt.compare(user.password, await bcrypt.hash(pass, 10))) {
@@ -57,7 +42,7 @@ export class AuthService {
   }
 
   async login(user: any) {
-    console.log(user.user);
+    // console.log(user.user);
     const unfinishedOrder = await this.orderService.findOneByStatus(
       'Pending',
       user.user,
