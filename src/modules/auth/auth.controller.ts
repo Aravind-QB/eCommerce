@@ -17,14 +17,13 @@ export class AuthController {
     const cookiesOpts = {
       httpOnly: false,
       secure: false,
-      sameSite: 'none',
+      sameSite: false,
       path: '/',
       maxAge: 60 * 60 * 24 * 3,
     };
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
-        access_token: x['access_token'],
         firstName: x['firstName'],
         lastName: x['lastName'],
         unfinishedOrder: x['unfinishedOrder'],
