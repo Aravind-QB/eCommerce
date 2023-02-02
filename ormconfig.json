@@ -1,0 +1,18 @@
+{
+    "host": "127.0.0.1",
+    "type": "mysql",
+    "port": "3306",
+    "username": "root",
+    "password": "qburst",
+    "database": "eCommerce",
+    "entities": [
+      "dist/entities/**/**.entity.js"
+    ],
+    "migrations": [
+      "src/database/migrations/*.ts"
+    ],
+    "cli": {
+      "migrationsDir": "src/database/migrations"
+    },
+    "synchronize": false
+  }

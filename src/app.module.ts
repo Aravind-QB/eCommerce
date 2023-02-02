@@ -21,6 +21,7 @@ import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { CategoryModule } from './modules/category/category.module';
 import { ProductReviewModule } from './modules/product-review/product-review.module';
 import { ProductReviews } from './entities/product-review/product-review.entity';
+import { ProductCategoriesMapper } from './entities/products/productCategoryMapper.entity';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { ProductReviews } from './entities/product-review/product-review.entity'
         OrderItems,
         Offer,
         ProductReviews,
+        ProductCategoriesMapper,
       ],
       synchronize: true,
       autoLoadEntities: true,
