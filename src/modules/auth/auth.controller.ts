@@ -18,7 +18,7 @@ export class AuthController {
     const cookiesOpts = {
       httpOnly: false,
       secure: false,
-      sameSite: 'none',
+      sameSite: 'lax',
       // path: '/',
       maxAge: 60 * 60 * 24 * 3,
       // domain:'localhost'
