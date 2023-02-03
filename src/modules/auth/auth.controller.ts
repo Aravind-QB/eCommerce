@@ -23,6 +23,7 @@ export class AuthController {
       domain:'localhost'
     };
     res.set({'Access-Control-Allow-Credentials': true})
+    res.set({'Access-Control-Allow-Origin': '*'})
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
