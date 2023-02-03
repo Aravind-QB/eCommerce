@@ -1,4 +1,4 @@
-import { Controller, Post, UseGuards, Get, Res, Req } from '@nestjs/common';
+import { Controller, Post, UseGuards, Get, Res, Req, HttpStatus } from '@nestjs/common';
 import { LocalAuthGuard } from './guard/local-auth.guard';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './guard/jwt-auth.guard';
@@ -46,5 +46,14 @@ export class AuthController {
     );
     return {...request.user,
       unfinishedOrder: unfinishedOrder,};
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('logout')
+  async logout(@Req() req, @Res({ passthrough: true }) res) {
+    res.clearCookie('emart')
+    res
+      .status(HttpStatus.OK)
+      .send('Logged out!');
   }
 }
