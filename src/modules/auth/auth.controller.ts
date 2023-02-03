@@ -8,22 +8,23 @@ import { OrderService } from '../order/order.service';
 @Controller('auth')
 export class AuthController {
   constructor(private authService: AuthService,
-    private orderService: OrderService,) {}
+    private orderService: OrderService,) {
+    }
 
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() req, @Res({ passthrough: true }) res) {
     const x = await this.authService.login(req);
     const cookiesOpts = {
-      httpOnly: false,
-      secure: false,
-      sameSite: 'None',
-      path: '/',
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      // path: '/',
       maxAge: 60 * 60 * 24 * 3,
-      domain:'localhost'
+      // domain:'localhost'
     };
-    res.set({'Access-Control-Allow-Credentials': true})
-    res.set({'Access-Control-Allow-Origin': 'http://localhost:3000'})
+    // res.set({'Access-Control-Allow-Credentials': true})
+    // res.set({'Access-Control-Allow-Origin': 'http://localhost:3000'})
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
