@@ -74,7 +74,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"aju4@mail.com\",\n    \"password\": \"aju12345\"\n}",
+					"raw": "{\n    \"username\": \"aju4@mail.com\",\n    \"password\": \"U2FsdGVkX1/+UgqzBz0nTpZ2S1WLvZpFYkgbTOMT3Yo=\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -107,7 +107,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDY0MjAwOSwiZXhwIjoxNjc0NzI4NDA5fQ.x_ZwLBT-Dv6t1QfuV1_fD8vH5jqcBC4OxZEKG-544Yk",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzUwNzUxMjcsImV4cCI6MTY3NTE2MTUyN30.AYNJjpHzEMREdm3yHpEeGS7RB9zW0wXDC8roJcFXAKY",
 							"type": "string"
 						}
 					]
@@ -126,6 +126,28 @@
 					"path": [
 						"auth",
 						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/auth/logout",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/auth/logout",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"auth",
+						"logout"
 					]
 				}
 			},
@@ -251,7 +273,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"Wings of fire\",\n    \"description\": \"description\",\n    \"unit\": \"1\",\n    \"inventory\": \"1000\",\n    \"price\": \"120\",\n    \"rating\": \"4.5\",\n    \"thumbnail\": \"https://i.dummyjson.com/data/products/33/thumbnail.jpg\",\n    \"brand\": \"Nokia\",\n    \"discountPercentage\": \"2\",\n    \"category\": {\n        \"id\": 1\n    },\n    \"productImages\": [\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/1.jpg\",\n            \"isActive\": \"1\"\n        },\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/2.jpg\",\n            \"isActive\": \"1\"\n        }\n    ]\n}",
+					"raw": "{\n    \"name\": \"Wings of fire\",\n    \"description\": \"description\",\n    \"unit\": \"1\",\n    \"inventory\": \"1000\",\n    \"price\": \"120\",\n    \"rating\": \"4.5\",\n    \"thumbnail\": \"https://i.dummyjson.com/data/products/33/thumbnail.jpg\",\n    \"brand\": \"Nokia\",\n    \"discountPercentage\": \"2\",\n    \"categories\": [\n        {\"category\": {\n            \"id\": 1\n        }},\n        {\"category\": {\n            \"id\": 2\n        }}\n    ],\n    \"productImages\": [\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/1.jpg\",\n            \"isActive\": \"1\"\n        },\n        {\n            \"imageURL\": \"https://i.dummyjson.com/data/products/33/2.jpg\",\n            \"isActive\": \"1\"\n        }\n    ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -332,6 +354,207 @@
 					"path": [
 						"products",
 						"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/products/byCategory/1",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDcyNTU5NywiZXhwIjoxNjc0ODExOTk3fQ.i2v6UcWML14JJ3s400eUK5VN7FZ8n1xP7K-JvIBKT80",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/products/byCategory/1",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"products",
+						"byCategory",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/productreview",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzUwNjQ5MzAsImV4cCI6MTY3NTE1MTMzMH0.RCrTIEYJ-UzPieLvXCjtd8WzsoHPuMtw_ivCv-dkrrY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\":\"1st review\",\n    \"description\":\"there is nothing more to say\",\n    \"rating\":\"0.5\",\n    \"product\": {\n        \"id\":\"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/productreview",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"productreview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/productreview",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZGI3NDk4YmYtM2FlYy00OWMwLTlmN2ItNDcyOWE0OGFhY2EwIiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1NEBtYWlsLmNvbSIsInBob25lTnVtYmVyIjoiKzkxODg0ODc0NjE2NiJ9LCJpYXQiOjE2NzUwNjY1NDgsImV4cCI6MTY3NTE1Mjk0OH0.hXzniqqSSA6sMz2N31MzUL_L8rlUEznoXc6U95tpEmY",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/productreview",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"productreview"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/productreview/byproduct/e76fca1a-88d7-4b1b-956c-5d6cb9c7addf",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWE5NmFlZmEtNGJjOC00YTFlLTg0YTMtYjJjMDc5ZDFkODU5IiwiZmlyc3ROYW1lIjoidmlzbWF5IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoidmlzbWF5QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTk5In0sImlhdCI6MTY3NDcyNTU5NywiZXhwIjoxNjc0ODExOTk3fQ.i2v6UcWML14JJ3s400eUK5VN7FZ8n1xP7K-JvIBKT80",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/productreview/byproduct/e76fca1a-88d7-4b1b-956c-5d6cb9c7addf",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"productreview",
+						"byproduct",
+						"e76fca1a-88d7-4b1b-956c-5d6cb9c7addf"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/productwishlist",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/productwishlist",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"productwishlist"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/productwishlist",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGY1NzE4MjEtYTIwYy00YTk1LWFhNzAtZmE3NmYyNzAyYWU0IiwiZmlyc3ROYW1lIjoiQWp1IiwibGFzdE5hbWUiOiJRQiIsImVtYWlsIjoiYWp1QG1haWwuY29tIiwicGhvbmVOdW1iZXIiOiIrOTE5OTk5OTk5OTY1In0sImlhdCI6MTY3NTMyMjc3NiwiZXhwIjoxNjc1NDA5MTc2fQ.QDv0drhg4BzPzmNCTF1h8Wo1Ht22oLbPVRr6AsEuCPw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"product\": {\n        \"id\":\"0a32cb4e-b33b-4a6e-8b74-0e0965f0d2c9\"\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://52.45.227.192/productwishlist",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"productwishlist"
 					]
 				}
 			},
@@ -475,6 +698,32 @@
 					"path": [
 						"order",
 						"2824e09c-c460-4fae-8aaf-e8822a261a55"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://52.45.227.192/order/getby/user",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://52.45.227.192/order/getby/user",
+					"protocol": "http",
+					"host": [
+						"52",
+						"45",
+						"227",
+						"192"
+					],
+					"path": [
+						"order",
+						"getby",
+						"user"
 					]
 				}
 			},
