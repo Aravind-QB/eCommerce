@@ -20,6 +20,7 @@ export class AuthController {
       sameSite: 'none',
       path: '/',
       maxAge: 60 * 60 * 24 * 3,
+      domain:'localhost'
     };
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
