@@ -22,6 +22,7 @@ export class AuthController {
       maxAge: 60 * 60 * 24 * 3,
       domain:'localhost'
     };
+    res.set({'Access-Control-Allow-Credentials': true})
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
