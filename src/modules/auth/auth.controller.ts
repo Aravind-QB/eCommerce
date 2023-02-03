@@ -16,7 +16,7 @@ export class AuthController {
   async login(@Req() req, @Res({ passthrough: true }) res) {
     const x = await this.authService.login(req);
     const cookiesOpts = {
-      httpOnly: false,
+      httpOnly: true,
       secure: true,
       sameSite: 'none',
       // path: '/',
