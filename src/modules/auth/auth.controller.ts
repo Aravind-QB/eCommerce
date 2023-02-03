@@ -16,7 +16,7 @@ export class AuthController {
     const x = await this.authService.login(req);
     const cookiesOpts = {
       httpOnly: false,
-      secure: true,
+      secure: false,
       sameSite: 'None',
       path: '/',
       maxAge: 60 * 60 * 24 * 3,
