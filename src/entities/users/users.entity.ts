@@ -8,6 +8,7 @@ import {
 } from 'typeorm';
 import { Order } from '../order/order.entity';
 import { ProductReviews } from '../product-review/product-review.entity';
+import { Addresses } from './user-addresses';
 
 @Entity()
 export class User {
@@ -43,4 +44,10 @@ export class User {
   @OneToMany(() => ProductReviews, (review) => review.user)
   @JoinColumn({ name: 'review_id' })
   review: ProductReviews;
+
+  @OneToMany(() => Addresses, (address) => address.user, {
+    cascade: true,
+  })
+  @JoinColumn({ name: 'address_id' })
+  addresses: Addresses[];
 }

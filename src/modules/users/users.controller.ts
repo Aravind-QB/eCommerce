@@ -62,21 +62,21 @@ export class UsersController {
     }
   }
 
-  @Post('/login')
-  async login(@Res() response, @Body() user: User) {
-    const _user = await this.usersService.login(user.username, user.password);
-    if (!!_user) {
-      return response.status(HttpStatus.OK).json({
-        status: 'Loggedin successfully',
-        firstname: _user.firstName,
-        lastname: _user.lastName,
-        email: _user.email,
-        phonenumber: _user.phoneNumber,
-      });
-    } else {
-      return response.status(HttpStatus.BAD_REQUEST).json({
-        status: 'Loggedin failed',
-      });
-    }
-  }
+  // @Post('/login')
+  // async login(@Res() response, @Body() user: User) {
+  //   const _user = await this.usersService.login(user.username, user.password);
+  //   if (!!_user) {
+  //     return response.status(HttpStatus.OK).json({
+  //       status: 'Loggedin successfully',
+  //       firstname: _user.firstName,
+  //       lastname: _user.lastName,
+  //       email: _user.email,
+  //       phonenumber: _user.phoneNumber,
+  //     });
+  //   } else {
+  //     return response.status(HttpStatus.BAD_REQUEST).json({
+  //       status: 'Loggedin failed',
+  //     });
+  //   }
+  // }
 }
