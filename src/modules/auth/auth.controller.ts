@@ -20,7 +20,7 @@ export class AuthController {
       secure: true,
       sameSite: 'none',
       // path: '/',
-      maxAge: 60 * 60 * 24 * 10,
+      maxAge: 10* 24 * 60 * 60 * 1000,
       // domain:'localhost'
     };
     // res.set({'Access-Control-Allow-Credentials': true})
