@@ -18,10 +18,11 @@ export class AuthInterceptor implements NestInterceptor {
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
     const req = context.switchToHttp().getRequest();
-    const tokenArray = req.headers.authorization;
+    const tokenArray = req.cookies['emart'];
+    
     if (tokenArray) {
       req.body['user'] = this.authService.decodeToken(
-        tokenArray.split(' ')[1],
+        tokenArray,
       ).user;
     }
 

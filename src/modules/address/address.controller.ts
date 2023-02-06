@@ -31,9 +31,9 @@ export class AddressController {
   @Get()
   async fetchAll(@Req() request, @Res() response) {
     const user= request.user.user;
-    const categories = await this.addressService.findAll(user);
+    const addresses = await this.addressService.findAll(user);
     return response.status(HttpStatus.OK).json({
-      categories,
+      addresses,
     });
   }
 }
