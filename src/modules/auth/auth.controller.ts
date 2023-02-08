@@ -19,12 +19,8 @@ export class AuthController {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      // path: '/',
       maxAge: 10* 24 * 60 * 60 * 1000,
-      // domain:'localhost'
     };
-    // res.set({'Access-Control-Allow-Credentials': true})
-    // res.set({'Access-Control-Allow-Origin': 'http://localhost:3000'})
     res.cookie('emart', x['access_token'], cookiesOpts);
     return {
       response: {
