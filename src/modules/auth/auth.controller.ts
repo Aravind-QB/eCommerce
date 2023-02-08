@@ -51,7 +51,14 @@ export class AuthController {
   @UseGuards(JwtAuthGuard)
   @Post('logout')
   async logout(@Req() req, @Res({ passthrough: true }) res) {
-    res.clearCookie('emart')
+    // res.clearCookie('emart')    
+    const cookiesOpts = {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+      maxAge: -1,
+    };
+    res.cookie('emart', '', cookiesOpts);
     res
       .status(HttpStatus.OK)
       .send('Logged out!');
