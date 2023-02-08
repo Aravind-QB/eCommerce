@@ -90,4 +90,10 @@ export class UsersService {
   async findOneAuth(data: number | any): Promise<User | undefined> {
     return await this.usersRepository.findOneBy(data);
   }
+  async checkExistingUser(username){
+    let existingUser = await this.usersRepository.findOneBy({
+      username: username,
+    });
+    return existingUser;
+  }
 }

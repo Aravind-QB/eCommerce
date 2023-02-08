@@ -14,19 +14,26 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   @Post('login')
   async login(@Req() req, @Res({ passthrough: true }) res) {
-    const x = await this.authService.login(req);
+    const loginResponse = await this.authService.login(req);
+    if(!loginResponse['access_token']) {
+      res
+      .status(HttpStatus.BAD_REQUEST)
+      .json({
+        "error":"User not found!"
+      });
+    }
     const cookiesOpts = {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
       maxAge: 10* 24 * 60 * 60 * 1000,
     };
-    res.cookie('emart', x['access_token'], cookiesOpts);
+    res.cookie('emart', loginResponse['access_token'], cookiesOpts);
     return {
       response: {
-        firstName: x['firstName'],
-        lastName: x['lastName'],
-        unfinishedOrder: x['unfinishedOrder'],
+        firstName: loginResponse['firstName'],
+        lastName: loginResponse['lastName'],
+        unfinishedOrder: loginResponse['unfinishedOrder'],
         expire: new Date().setDate(new Date().getDate() + 1),
       },
     };

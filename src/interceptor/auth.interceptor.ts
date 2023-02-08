@@ -23,7 +23,7 @@ export class AuthInterceptor implements NestInterceptor {
     if (tokenArray) {
       req.body['user'] = this.authService.decodeToken(
         tokenArray,
-      ).user;
+      )?.user;
     }
 
     return next

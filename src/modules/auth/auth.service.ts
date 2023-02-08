@@ -15,6 +15,10 @@ export class AuthService {
   ) {}
 
   async validateUser(username: string, pass: string): Promise<any> {
+    const existingUser = await this.usersService.checkExistingUser(username);
+    if(!existingUser) {
+      return 'User not found!';
+    }
     const algorithm = 'aes-256-cbc';
     const initVector = process.env.INIT_VECTOR;
     const Securitykey = process.env.SECRET_KEY;
@@ -42,7 +46,9 @@ export class AuthService {
   }
 
   async login(user: any) {
-    // console.log(user.user);
+    if(user.user === 'User not found!') {
+      return 'User not found!'
+    }
     const unfinishedOrder = await this.orderService.findOneByStatus(
       'Pending',
       user.user,
@@ -56,7 +62,6 @@ export class AuthService {
         phoneNumber: user.user.phoneNumber,
       },
     };
-    // console.log({payload});
     return {
       access_token: this.jwtService.sign(payload),
       firstName: user.user.firstName,
