@@ -18,9 +18,7 @@ export class AuthController {
     if(!loginResponse['access_token']) {
       res
       .status(HttpStatus.BAD_REQUEST)
-      .json({
-        "error":"User not found!"
-      });
+      .json({"failed":"Login failed","message":"User not found!"});
     }
     const cookiesOpts = {
       httpOnly: true,
