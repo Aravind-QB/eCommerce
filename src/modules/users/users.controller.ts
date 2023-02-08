@@ -27,9 +27,17 @@ export class UsersController {
       }, HttpStatus.BAD_REQUEST);
     });
     if (!!newUser) {
-      return response.status(HttpStatus.CREATED).json({
-        success: 'User created successfully',
-      });
+      if(newUser['id']) {
+        return response.status(HttpStatus.CREATED).json({
+          success: 'User created successfully',
+        });
+      }
+      else {
+        return response.status(HttpStatus.BAD_REQUEST).json({
+          failed: 'User creation failed',
+          message: newUser,
+        });
+      }
     } else {
       return response.status(HttpStatus.BAD_REQUEST).json({
         failed: 'User creation failed',

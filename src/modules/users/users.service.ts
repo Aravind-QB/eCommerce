@@ -35,9 +35,21 @@ export class UsersService {
     });
   }
 
-  async createUser(_user: CreateUserDto): Promise<User> {
+  async createUser(_user: CreateUserDto): Promise<User | string> {
     try {
+      let existingUser = await this.usersRepository.findOneBy({
+        email: _user.email
+      });
+      if(existingUser) {
+        return 'Email already exists!';
+      }
 
+      existingUser = await this.usersRepository.findOneBy({
+        phoneNumber: _user.phoneNumber
+      });
+      if(existingUser) {
+        return 'Phone number already exists!';
+      }
       let user = new User();
       user = Object.assign(user, _user);
       console.log(user);
@@ -51,7 +63,7 @@ export class UsersService {
       console.log('Decrypted message: ' + password);
 
     const initVector = process.env.INIT_VECTOR;
-    
+
     const cipher = crypto.createCipheriv(algorithm, Securitykey, initVector);
 
     let encryptedData = cipher.update(password, 'utf-8', 'hex');
