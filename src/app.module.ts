@@ -22,7 +22,7 @@ import { CategoryModule } from './modules/category/category.module';
 import { ProductReviewModule } from './modules/product-review/product-review.module';
 import { ProductReviews } from './entities/product-review/product-review.entity';
 import { ProductCategoriesMapper } from './entities/products/productCategoryMapper.entity';
-import { ProductWishlistModule } from './product-wishlist/product-wishlist.module';
+import { ProductWishlistModule } from './modules/product-wishlist/product-wishlist.module';
 import { ProductWishlist } from './entities/products/productWishlist.entity';
 import { Addresses } from './entities/users/user-addresses';
 import { AddressModule } from './modules/address/address.module';
