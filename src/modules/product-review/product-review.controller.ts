@@ -30,6 +30,13 @@ export class ProductReviewController {
     if (!!newreview) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Review created successfully',
+        review: {
+          id: newreview.id,
+          title: newreview.title,
+          description: newreview.description,
+          rating: newreview.rating,
+          isActive: newreview.isActive,
+        }
       });
     } else {
       return response.status(HttpStatus.BAD_REQUEST).json({
