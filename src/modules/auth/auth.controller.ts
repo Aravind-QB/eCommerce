@@ -24,7 +24,7 @@ export class AuthController {
       httpOnly: true,
       secure: true,
       sameSite: 'none',
-      maxAge: 10* 24 * 60 * 60 * 1000,
+      maxAge: 60000, //10* 24 * 60 * 60 * 1000
     };
     res.cookie('emart', loginResponse['access_token'], cookiesOpts);
     return {
