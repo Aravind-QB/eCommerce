@@ -19,6 +19,7 @@ export class AddressController {
     if (!!newAddress) {
       return response.status(HttpStatus.CREATED).json({
         success: 'Address created successfully',
+        ...newAddress
       });
     } else {
       return response.status(HttpStatus.BAD_REQUEST).json({
