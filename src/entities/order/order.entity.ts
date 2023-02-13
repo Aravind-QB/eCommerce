@@ -35,7 +35,7 @@ export class Order {
   orderItems: OrderItems[];
 
   @ManyToOne(() => Addresses, (address) => address.id, {
-    nullable: false,
+    nullable: true,
   })
   address: Addresses;
 }
