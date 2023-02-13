@@ -40,6 +40,7 @@ export class ProductsService {
   findOne(id: string): Promise<Product[]> {
     return this.productsRepository.find({
       select: {
+        id: true,
         name: true,
         description: true,
         inventory: true,
