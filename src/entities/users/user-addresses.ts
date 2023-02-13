@@ -4,7 +4,10 @@ import {
   PrimaryGeneratedColumn,
   ManyToOne,
   Generated,
+  OneToMany,
+  JoinColumn,
 } from 'typeorm';
+import { Order } from '../order/order.entity';
 import { User } from './users.entity';
 
 @Entity()
@@ -50,4 +53,10 @@ export class Addresses {
     nullable: false,
   })
   user: User;
+  
+  @OneToMany(() => Order, (order) => order.address, {
+    // cascade: ['insert', 'update'],
+  })
+  @JoinColumn({ name: 'address_id' })
+  order: Order[];
 }

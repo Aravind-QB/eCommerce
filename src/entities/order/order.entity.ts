@@ -7,6 +7,7 @@ import {
   JoinColumn,
   OneToMany,
 } from 'typeorm';
+import { Addresses } from '../users/user-addresses';
 import { User } from '../users/users.entity';
 import { OrderItems } from './order-items.entity';
 
@@ -32,4 +33,9 @@ export class Order {
   })
   @JoinColumn({ name: 'orderItems_id' })
   orderItems: OrderItems[];
+
+  @ManyToOne(() => Addresses, (address) => address.id, {
+    nullable: false,
+  })
+  address: Addresses;
 }
