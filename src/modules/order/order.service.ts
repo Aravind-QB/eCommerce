@@ -27,12 +27,25 @@ export class OrderService {
           lastName: true,
           phoneNumber: true,
         },
+        address: {
+          AddressLine1: true,
+          AddressLine2: true,
+          AddressType: true,
+          Area: true,
+          City: true,
+          id: true,
+          Landmark: true,
+          Phonenumber: true,
+          State: true,
+          Zipcode: true
+        }
       },
       relations: {
         orderItems: {
           product: true,
         },
         user: true,
+        address: true,
       },
       where: {
         id: id,
@@ -57,12 +70,25 @@ export class OrderService {
           lastName: true,
           phoneNumber: true,
         },
+        address: {
+          AddressLine1: true,
+          AddressLine2: true,
+          AddressType: true,
+          Area: true,
+          City: true,
+          id: true,
+          Landmark: true,
+          Phonenumber: true,
+          State: true,
+          Zipcode: true
+        }
       },
       relations: {
         orderItems: {
           product: true,
         },
         user: true,
+        address: true,
       },
       where: {
         status: status,
@@ -88,12 +114,25 @@ export class OrderService {
           lastName: true,
           phoneNumber: true,
         },
+        address: {
+          AddressLine1: true,
+          AddressLine2: true,
+          AddressType: true,
+          Area: true,
+          City: true,
+          id: true,
+          Landmark: true,
+          Phonenumber: true,
+          State: true,
+          Zipcode: true
+        }
       },
       relations: {
         orderItems: {
           product: true,
         },
         user: true,
+        address: true,
       },
       where: {
         user: user,
