@@ -11,8 +11,19 @@ export class AddressService {
       private addressRepository: Repository<Addresses>,
     ) {}
   
-    createAddress(address: Addresses): Promise<Addresses> {
+    createAddress(address: Addresses, user: User): Promise<Addresses> {
       try {
+        if(address.IsDefault) {
+          this.findAll(user).then(
+            x=> {
+              x.forEach(element => {
+                this.addressRepository.save({
+                  id: element.id, IsDefault: false
+                });
+              });
+            }
+          );
+        }
         const newaddress = this.addressRepository.save(address);
         return newaddress;
       } catch (error) {
@@ -39,6 +50,31 @@ export class AddressService {
         },
         where: {
           IsActive: true,
+          user: user
+        },
+      });
+    }
+  
+    findDefault(user: User): Promise<Addresses[]> {
+      return this.addressRepository.find({
+        select: {
+          id: true,
+          Firstname:true,
+          Lastname:true,
+          AddressLine1: true,
+          AddressLine2: true,
+          AddressType: true,
+          Area: true,
+          City: true,
+          State: true,
+          Zipcode: true,
+          Landmark: true,
+          Phonenumber: true,
+          IsDefault:true,
+        },
+        where: {
+          IsActive: true,
+          IsDefault: true,
           user: user
         },
       });

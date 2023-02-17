@@ -9,8 +9,9 @@ export class AddressController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
-  async createAddress(@Res() response, @Body() address: Addresses) {
-    const newAddress = await this.addressService.createAddress(address).catch(err => {
+  async createAddress(@Req() request, @Res() response, @Body() address: Addresses) {
+    const user= request.user.user;
+    const newAddress = await this.addressService.createAddress(address, user).catch(err => {
       throw new HttpException({
         message: 'Something went wrong!',
         error: err.message,
@@ -33,6 +34,16 @@ export class AddressController {
   async fetchAll(@Req() request, @Res() response) {
     const user= request.user.user;
     const addresses = await this.addressService.findAll(user);
+    return response.status(HttpStatus.OK).json({
+      addresses,
+    });
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("default")
+  async fetchDefault(@Req() request, @Res() response) {
+    const user= request.user.user;
+    const addresses = await this.addressService.findDefault(user);
     return response.status(HttpStatus.OK).json({
       addresses,
     });
