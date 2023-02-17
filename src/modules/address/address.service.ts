@@ -24,6 +24,8 @@ export class AddressService {
       return this.addressRepository.find({
         select: {
           id: true,
+          Firstname:true,
+          Lastname:true,
           AddressLine1: true,
           AddressLine2: true,
           AddressType: true,
@@ -33,6 +35,7 @@ export class AddressService {
           Zipcode: true,
           Landmark: true,
           Phonenumber: true,
+          IsDefault:true,
         },
         where: {
           IsActive: true,

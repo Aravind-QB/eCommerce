@@ -17,6 +17,12 @@ export class Addresses {
   id: string;
 
   @Column({nullable: false})
+  Firstname: string;
+
+  @Column({nullable: false})
+  Lastname: string;
+
+  @Column({nullable: false})
   AddressLine1: string;
 
   @Column({nullable: false})
