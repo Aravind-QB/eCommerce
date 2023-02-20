@@ -30,6 +30,7 @@ export class OrderController {
     });
     if (!!newOrder) {
       return response.status(HttpStatus.CREATED).json({
+        orderid: newOrder.id,
         success: 'Order created successfully',
       });
     } else {
