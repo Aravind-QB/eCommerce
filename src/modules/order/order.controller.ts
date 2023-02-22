@@ -31,11 +31,11 @@ export class OrderController {
     if (!!newOrder) {
       return response.status(HttpStatus.CREATED).json({
         orderid: newOrder.id,
-        success: 'Order created successfully',
+        success: 'Order created/updated successfully',
       });
     } else {
       return response.status(HttpStatus.BAD_REQUEST).json({
-        failed: 'Order creation failed',
+        failed: 'Order creation/updation failed',
       });
     }
   }

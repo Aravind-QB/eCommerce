@@ -6,10 +6,12 @@ import {
   Generated,
   JoinColumn,
   OneToMany,
+  OneToOne,
 } from 'typeorm';
 import { Addresses } from '../users/user-addresses';
 import { User } from '../users/users.entity';
 import { OrderItems } from './order-items.entity';
+import { Payment } from './payment';
 
 @Entity()
 export class Order {
@@ -33,6 +35,13 @@ export class Order {
   })
   @JoinColumn({ name: 'orderItems_id' })
   orderItems: OrderItems[];
+
+  @OneToOne(() => Payment, (payment) => payment.order, {
+    nullable: true,
+    cascade: ['insert', 'update'],
+  })
+  @JoinColumn({ name: 'payment_id' })
+  payment: Payment;
 
   @ManyToOne(() => Addresses, (address) => address.id, {
     nullable: true,

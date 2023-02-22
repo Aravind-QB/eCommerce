@@ -38,6 +38,14 @@ export class OrderService {
           Phonenumber: true,
           State: true,
           Zipcode: true
+        },
+        payment: {
+          id: true,
+          cardNumber: true,
+          cvv: true,
+          expiryDate: true,
+          issuedDate: true,
+          nameOnCard: true,
         }
       },
       relations: {
@@ -46,6 +54,7 @@ export class OrderService {
         },
         user: true,
         address: true,
+        payment: true,
       },
       where: {
         id: id,
@@ -81,6 +90,14 @@ export class OrderService {
           Phonenumber: true,
           State: true,
           Zipcode: true
+        },
+        payment: {
+          id: true,
+          cardNumber: true,
+          cvv: true,
+          expiryDate: true,
+          issuedDate: true,
+          nameOnCard: true,
         }
       },
       relations: {
@@ -89,6 +106,7 @@ export class OrderService {
         },
         user: true,
         address: true,
+        payment: true,
       },
       where: {
         status: status,
@@ -125,6 +143,14 @@ export class OrderService {
           Phonenumber: true,
           State: true,
           Zipcode: true
+        },
+        payment: {
+          id: true,
+          cardNumber: true,
+          cvv: true,
+          expiryDate: true,
+          issuedDate: true,
+          nameOnCard: true,
         }
       },
       relations: {
@@ -133,6 +159,7 @@ export class OrderService {
         },
         user: true,
         address: true,
+        payment: true,
       },
       where: {
         user: user,
@@ -142,7 +169,6 @@ export class OrderService {
 
   createOrder(order: Order): Promise<Order> {
     try {
-      // console.log(order);
       const newOrder = this.ordersRepository.save(order);
       return newOrder;
     } catch (error) {

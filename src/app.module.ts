@@ -26,6 +26,7 @@ import { ProductWishlistModule } from './modules/product-wishlist/product-wishli
 import { ProductWishlist } from './entities/products/productWishlist.entity';
 import { Addresses } from './entities/users/user-addresses';
 import { AddressModule } from './modules/address/address.module';
+import { Payment } from './entities/order/payment';
 
 @Module({
   imports: [
@@ -52,7 +53,8 @@ import { AddressModule } from './modules/address/address.module';
         ProductReviews,
         ProductCategoriesMapper,
         ProductWishlist,
-        Addresses
+        Addresses,
+        Payment
       ],
       synchronize: true,
       autoLoadEntities: true,
