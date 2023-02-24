@@ -37,7 +37,8 @@ export class OrderService {
           Landmark: true,
           Phonenumber: true,
           State: true,
-          Zipcode: true
+          Zipcode: true,
+          IsDefault: true,
         },
         payment: {
           id: true,
@@ -46,6 +47,7 @@ export class OrderService {
           expiryDate: true,
           issuedDate: true,
           nameOnCard: true,
+          IsDefault: true,
         }
       },
       relations: {
@@ -89,7 +91,8 @@ export class OrderService {
           Landmark: true,
           Phonenumber: true,
           State: true,
-          Zipcode: true
+          Zipcode: true,
+          IsDefault: true,
         },
         payment: {
           id: true,
@@ -98,6 +101,7 @@ export class OrderService {
           expiryDate: true,
           issuedDate: true,
           nameOnCard: true,
+          IsDefault: true,
         }
       },
       relations: {
@@ -142,7 +146,8 @@ export class OrderService {
           Landmark: true,
           Phonenumber: true,
           State: true,
-          Zipcode: true
+          Zipcode: true,
+          IsDefault: true,
         },
         payment: {
           id: true,
@@ -151,6 +156,7 @@ export class OrderService {
           expiryDate: true,
           issuedDate: true,
           nameOnCard: true,
+          IsDefault: true,
         }
       },
       relations: {

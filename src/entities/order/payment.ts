@@ -29,6 +29,9 @@ export class Payment {
 
   @Column()
   nameOnCard: string;
+  
+  @Column({default: false})
+  IsDefault: boolean;
 
   @OneToOne(() => Order, (order) => order.id, {
     nullable: false,
