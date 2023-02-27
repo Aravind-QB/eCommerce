@@ -72,13 +72,13 @@ export class UsersController {
   }
 
   @UseGuards(JwtAuthGuard)
-  @Get('defaultpayment')
+  @Get('payment/default')
   async findDefaultPayment(@Req() req, @Res() response) {
     const user = req?.user?.payload?.user;
-    const order = await this.usersService.findDefaultPayment(user);
-    if (!!order) {
+    const defaultPayment = await this.usersService.findDefaultPayment(user);
+    if (!!defaultPayment) {
       return response.status(HttpStatus.OK).json({
-        order,
+        defaultPayment,
       });
     } else {
       return response.status(HttpStatus.NOT_FOUND).json({});
