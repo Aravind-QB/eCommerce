@@ -185,6 +185,9 @@ export class OrderService {
   findDefaultPayment(user: any): Promise<Order[]> {
     return this.ordersRepository.find({
       select: {
+        id:false,
+        grandTotal: false,
+        status: false,
         payment: {
           id: true,
           cardNumber: true,
@@ -196,7 +199,7 @@ export class OrderService {
         }
       },
       relations: {
-        user: true,
+        // user: true,
         payment: true,
       },
       where: {
