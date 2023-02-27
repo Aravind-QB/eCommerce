@@ -6,6 +6,7 @@ import {
   HttpStatus,
   Param,
   Post,
+  Req,
   Res,
   UseGuards,
 } from '@nestjs/common';
@@ -70,6 +71,19 @@ export class UsersController {
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('defaultpayment')
+  async findDefaultPayment(@Req() req, @Res() response) {
+    const user = req?.user?.payload?.user;
+    const order = await this.usersService.findDefaultPayment(user);
+    if (!!order) {
+      return response.status(HttpStatus.OK).json({
+        order,
+      });
+    } else {
+      return response.status(HttpStatus.NOT_FOUND).json({});
+    }
+  }
   // @Post('/login')
   // async login(@Res() response, @Body() user: User) {
   //   const _user = await this.usersService.login(user.username, user.password);

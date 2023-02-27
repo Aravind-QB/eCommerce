@@ -6,12 +6,14 @@ import * as bcrypt from 'bcrypt';
 import { CreateUserDto } from 'src/models/create-user.dto';
 import * as crypto from 'crypto';
 import * as cryptojs from 'crypto-js';
+import { OrderService } from '../order/order.service';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private usersRepository: Repository<User>,
+    private orderService: OrderService,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -95,5 +97,9 @@ export class UsersService {
       username: username,
     });
     return existingUser;
+  }
+
+  findDefaultPayment(user) {
+    return this.orderService.findDefaultPayment(user);
   }
 }

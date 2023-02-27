@@ -181,4 +181,30 @@ export class OrderService {
       return error;
     }
   }
+
+  findDefaultPayment(user: any): Promise<Order[]> {
+    return this.ordersRepository.find({
+      select: {
+        payment: {
+          id: true,
+          cardNumber: true,
+          cvv: true,
+          expiryDate: true,
+          issuedDate: true,
+          nameOnCard: true,
+          IsDefault: true,
+        }
+      },
+      relations: {
+        user: true,
+        payment: true,
+      },
+      where: {
+        user: user,
+        payment: {
+          IsDefault: true,
+        }
+      },
+    });
+  }
 }
