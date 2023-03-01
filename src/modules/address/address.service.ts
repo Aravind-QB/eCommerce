@@ -60,6 +60,7 @@ export class AddressService {
           Landmark: true,
           Phonenumber: true,
           IsDefault:true,
+          IsBillingDefault: true,
         },
         where: {
           IsActive: true,
