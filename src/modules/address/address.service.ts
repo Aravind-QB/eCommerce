@@ -27,7 +27,7 @@ export class AddressService {
         }
 
         if(address.IsBillingDefault) { //  && (!address.AddressType || address.AddressType == AddressType.BILLING)
-          this.findAll(user).then(
+          this.findAllBilling(user).then(
             x=> {
               x.forEach(element => {
                 this.addressRepository.save({

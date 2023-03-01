@@ -10,7 +10,7 @@ export class AddressController {
   @UseGuards(JwtAuthGuard)
   @Post()
   async createAddress(@Req() request, @Res() response, @Body() address: Addresses) {
-    const user= request.user.user;
+    const user= request?.user?.payload?.user;
     const newAddress = await this.addressService.createAddress(address, user).catch(err => {
       throw new HttpException({
         message: 'Something went wrong!',
@@ -32,7 +32,7 @@ export class AddressController {
   @UseGuards(JwtAuthGuard)
   @Get()
   async fetchAll(@Req() request, @Res() response) {
-    const user= request.user.user;
+    const user= request?.user?.payload?.user;
     const addresses = await this.addressService.findAll(user);
     return response.status(HttpStatus.OK).json({
       addresses,
@@ -42,7 +42,7 @@ export class AddressController {
   @UseGuards(JwtAuthGuard)
   @Get("default")
   async fetchDefault(@Req() request, @Res() response) {
-    const user= request.user.user;
+    const user= request?.user?.payload?.user;
     const addresses = await this.addressService.findDefault(user);
     return response.status(HttpStatus.OK).json({
       addresses,
@@ -52,7 +52,7 @@ export class AddressController {
   @UseGuards(JwtAuthGuard)
   @Get("defaultBilling")
   async findDefaultBilling(@Req() request, @Res() response) {
-    const user= request.user.user;
+    const user= request?.user?.payload?.user;
     const addresses = await this.addressService.findDefaultBilling(user);
     return response.status(HttpStatus.OK).json({
       addresses,
