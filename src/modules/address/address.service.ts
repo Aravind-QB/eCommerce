@@ -12,30 +12,35 @@ export class AddressService {
       private addressRepository: Repository<Addresses>,
     ) {}
   
-    createAddress(address: Addresses, user: User): Promise<Addresses> {
+    async createAddress(address: Addresses, user: User): Promise<Addresses> {
       try {
+        console.log("user", user);
+        
         if(address.IsDefault) { // && (!address.AddressType || address.AddressType == AddressType.SHIPPING)
-          this.findAll(user).then(
-            x=> {
-              x.forEach(element => {
-                this.addressRepository.save({
-                  id: element.id, IsDefault: false
-                });
+          console.log("Is Default");
+          
+          const addresses = await this.findDefault(user);
+            addresses.forEach(element => {
+              let address = {...element}
+              
+              this.addressRepository.save({
+                id: address.id, IsDefault: false
               });
-            }
-          );
+            });
         }
 
         if(address.IsBillingDefault) { //  && (!address.AddressType || address.AddressType == AddressType.BILLING)
-          this.findAllBilling(user).then(
-            x=> {
-              x.forEach(element => {
-                this.addressRepository.save({
-                  id: element.id, IsBillingDefault: false
-                });
-              });
-            }
-          );
+          console.log("Is Billing");
+          
+          const addresses = await this.findDefaultBilling(user);
+          
+          addresses.forEach(element => {
+            let address = {...element}
+            
+            this.addressRepository.save({
+              id: address.id, IsBillingDefault: false
+            });
+          });
         }
 
         const newaddress = this.addressRepository.save(address);
@@ -64,7 +69,7 @@ export class AddressService {
         },
         where: {
           IsActive: true,
-          AddressType: 'S' || null,
+          AddressType: 'S' || 'SB' || '' || null,
           user: user
         },
       });
@@ -88,7 +93,7 @@ export class AddressService {
         },
         where: {
           IsActive: true,
-          AddressType: 'B',
+          AddressType: 'B' || 'SB' || null,
           user: user
         },
       });
