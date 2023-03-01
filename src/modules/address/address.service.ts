@@ -109,11 +109,11 @@ export class AddressService {
           Landmark: true,
           Phonenumber: true,
           IsDefault:true,
+          IsBillingDefault: true,
         },
         where: {
           IsActive: true,
           IsDefault: true,
-          AddressType: 'S' || null,
           user: user
         },
       });
@@ -133,12 +133,12 @@ export class AddressService {
           Zipcode: true,
           Landmark: true,
           Phonenumber: true,
+          IsDefault: true,
           IsBillingDefault:true,
         },
         where: {
           IsActive: true,
           IsBillingDefault: true,
-          AddressType: 'B',
           user: user
         },
       });
