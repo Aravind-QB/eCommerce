@@ -76,11 +76,13 @@ export class UsersController {
   async findDefaultPayment(@Req() req, @Res() response) {
     const user = req?.user?.payload?.user;
     const defaultPayment = await this.usersService.findDefaultPayment(user);
+    const defaultBillingAddress = await this.usersService.findDefaultBillingAddress(user);
     if (!!defaultPayment && defaultPayment.length > 0) {
       return response.status(HttpStatus.OK).json({
-        ...defaultPayment[0].payment,
+        ...defaultPayment[0].payment, defaultBillingAddress
       });
-    } else {
+    } 
+    else {
       return response.status(HttpStatus.NOT_FOUND).json({});
     }
   }

@@ -49,6 +49,9 @@ export class Addresses {
   @Column({default: false})
   IsDefault: boolean;
 
+  @Column({default: false})
+  IsBillingDefault: boolean;
+
   @Column()
   AddressType: string;
 

@@ -10,3 +10,8 @@ export const dbConstants = {
   DATABASE_PASSWORD: `${process.env.DATABASE_PASSWORD}`,
   DATABASE_NAME: process.env.DATABASE_NAME,
 };
+
+export const AddressType = {
+  SHIPPING: 'S',
+  BILLING: 'B'
+};

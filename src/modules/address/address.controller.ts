@@ -48,4 +48,14 @@ export class AddressController {
       addresses,
     });
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Get("defaultBilling")
+  async findDefaultBilling(@Req() request, @Res() response) {
+    const user= request.user.user;
+    const addresses = await this.addressService.findDefaultBilling(user);
+    return response.status(HttpStatus.OK).json({
+      addresses,
+    });
+  }
 }

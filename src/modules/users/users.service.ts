@@ -7,6 +7,7 @@ import { CreateUserDto } from 'src/models/create-user.dto';
 import * as crypto from 'crypto';
 import * as cryptojs from 'crypto-js';
 import { OrderService } from '../order/order.service';
+import { AddressService } from '../address/address.service';
 
 @Injectable()
 export class UsersService {
@@ -14,6 +15,7 @@ export class UsersService {
     @InjectRepository(User)
     private usersRepository: Repository<User>,
     private orderService: OrderService,
+    private addressService: AddressService,
   ) {}
 
   findAll(): Promise<User[]> {
@@ -101,5 +103,9 @@ export class UsersService {
 
   findDefaultPayment(user) {
     return this.orderService.findDefaultPayment(user);
+  }
+
+  findDefaultBillingAddress(user) {
+    return this.addressService.findDefaultBilling(user);
   }
 }

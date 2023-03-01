@@ -47,4 +47,10 @@ export class Order {
     nullable: true,
   })
   address: Addresses;
+
+  @ManyToOne(() => Addresses, (address) => address.id, {
+    nullable: true,
+    cascade: ['insert', 'update'],
+  })
+  billingAddress: Addresses;
 }
